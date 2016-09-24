@@ -41,7 +41,7 @@ tracker = None
 max_threads = multiprocessing.cpu_count()
 
 # Tags to copy (note: changing/adding to these requires changing/adding values in/to 'encoders' below)
-copy_tags = ('TITLE', 'ALBUM', 'ARTIST', 'TRACKNUMBER', 'GENRE', 'COMMENT', 'DATE')
+copy_tags = ('TITLE', 'ALBUM','ALBUMARTIST', 'ARTIST', 'TRACKNUMBER', 'DISCNUMBER', 'GENRE', 'COMMENT', 'DATE')
 
 # Default encoding options
 enc_opts = {
@@ -60,8 +60,10 @@ encoders = {
 		'enc':         "lame --silent %(opts)s %(tags)s --add-id3v2 - '%(filename)s' 2>&1",
 		'TITLE':       "--tt '%(TITLE)s'",
 		'ALBUM':       "--tl '%(ALBUM)s'",
+        'ALBUMARTIST': "--tv 'TPE2=%(ALBUMARTIST)s'",
 		'ARTIST':      "--ta '%(ARTIST)s'",
 		'TRACKNUMBER': "--tn '%(TRACKNUMBER)s'",
+        'DISCNUMBER':  "--tv 'TPOS=%(DISCNUMBER)s'",
 		'GENRE':       "--tg '%(GENRE)s'",
 		'DATE':        "--ty '%(DATE)s'",
 		'COMMENT':     "--tc '%(COMMENT)s'",
@@ -72,7 +74,9 @@ encoders = {
 		'TITLE':       "-t '%(TITLE)s'",
 		'ALBUM':       "-l '%(ALBUM)s'",
 		'ARTIST':      "-a '%(ARTIST)s'",
+        'ALBUMARTIST': "-c 'albumartist=%(ALBUMARTIST)s'",
 		'TRACKNUMBER': "-N '%(TRACKNUMBER)s'",
+        'DISCNUMBER':  "-c 'discnumber=%(DISCNUMBER)s'",
 		'GENRE':       "-G '%(GENRE)s'",
 		'DATE':        "-d '%(DATE)s'",
 		'COMMENT':     "-c 'comment=%(COMMENT)s'",
@@ -83,7 +87,9 @@ encoders = {
 		'TITLE':       "-meta:title='%(TITLE)s'",
 		'ALBUM':       "-meta:album='%(ALBUM)s'",
 		'ARTIST':      "-meta:artist='%(ARTIST)s'",
+        'ALBUMARTIST': "",
 		'TRACKNUMBER': "-meta:track='%(TRACKNUMBER)s'",
+        'DISCNUMBER':  "",
 		'GENRE':       "-meta:genre='%(GENRE)s'",
 		'DATE':        "-meta:year='%(DATE)s'",
 		'COMMENT':     "-meta:comment='%(COMMENT)s'",
@@ -94,7 +100,9 @@ encoders = {
 		'TITLE':       "-metadata title='%(TITLE)s'",
 		'ALBUM':       "-metadata album='%(ALBUM)s'",
 		'ARTIST':      "-metadata author='%(ARTIST)s'",
+        'ALBUMARTIST': "",
 		'TRACKNUMBER': "-metadata track='%(TRACKNUMBER)s'",
+        'DISCNUMBER':  "",
 		'GENRE':       "-metadata genre='%(GENRE)s'",
 		'DATE':	       "-metadata date='%(DATE)s'",
 		'COMMENT':     "-metadata comment='%(COMMENT)s'",
@@ -104,8 +112,10 @@ encoders = {
 		'enc':         "flac %(opts)s -s %(tags)s -o '%(filename)s' - 2>&1",
 		'TITLE':       "-T 'TITLE=%(TITLE)s'",
 		'ALBUM':       "-T 'ALBUM=%(ALBUM)s'",
+        'ALBUMARTIST': "-T 'ALBUMARTIST=%(ALBUMARTIST)s'",
 		'ARTIST':      "-T 'ARTIST=%(ARTIST)s'",
 		'TRACKNUMBER': "-T 'TRACKNUMBER=%(TRACKNUMBER)s'",
+        'DISCNUMBER':  "-T 'DISCNUMBER=%(DISCNUMBER)s'",
 		'GENRE':       "-T 'GENRE=%(GENRE)s'",
 		'DATE':        "-T 'DATE=%(DATE)s'",
 		'COMMENT':     "-T 'COMMENT=%(COMMENT)s'",
