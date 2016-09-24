@@ -203,7 +203,7 @@ def setup_parser():
 	]:
 		p.add_argument(*a[0], **{'default': a[1], 'action': 'store_true', 'help': a[2]})
 	for a in [
-		[['-t', '--tracker'],     tracker,     'URL', 'tracker URL'], 
+		[['-t', '--tracker'],     tracker,     'URL', 'tracker URL'],
 		[['-o', '--output'],      output,      'DIR', 'set output dir'],
 		[['-O', '--torrent-dir'], torrent_dir, 'DIR', 'set independent torrent output dir'],
 	]:
